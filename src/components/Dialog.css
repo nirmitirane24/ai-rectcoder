@@ -1,0 +1,79 @@
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's on top */
+    backdrop-filter: blur(3px); /* Optional nice effect */
+  }
+  
+  .dialog-box {
+    background-color: var(--container-bg, #fff); /* Use theme variable */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 450px;
+    color: var(--text-color, #333); /* Use theme variable */
+    border: 1px solid var(--border-color, #ccc); /* Use theme variable */
+  }
+  
+  .dialog-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.25em;
+    color: var(--header-color, #333); /* Use theme variable */
+  }
+  
+  .dialog-message {
+    margin-bottom: 25px;
+    font-size: 1em;
+    line-height: 1.5;
+  }
+  
+  .dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .dialog-button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .dialog-button.confirm {
+    background-color: var(--button-bg, #007bff);
+    color: var(--button-text, #fff);
+  }
+  
+  .dialog-button.confirm:hover {
+    background-color: var(--button-hover-bg, #0056b3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+  
+  .dialog-button.cancel {
+    background-color: #6c757d; /* Bootstrap secondary color */
+    color: white;
+  }
+  /* Dark mode adaptation for cancel button if needed */
+  body.dark .dialog-button.cancel {
+      background-color: #5a6268;
+  }
+  
+  .dialog-button.cancel:hover {
+    background-color: #5a6268;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  body.dark .dialog-button.cancel:hover {
+       background-color: #4e555b;
+  }

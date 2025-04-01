@@ -1,0 +1,526 @@
+/* Add these CSS variables and update existing rules */
+:root {
+  --bg-color: #e0e0e0;
+  --text-color: #333;
+  --border-color: #cccccc72;
+  --container-bg: #fff;
+  --sidebar-bg: #fff;
+  --header-color: #333;
+  --button-bg: #007bffb1;
+  --button-text: #fff;
+  --button-hover-bg: #0056b3;
+  --input-bg: #fff;
+  --input-border: #ccc;
+  --input-text: #333;
+  --error-color: #dc3545;
+  --loading-color: #666;
+  --link-color: #007bff;
+  --file-hover-bg: #eee;
+  --file-active-bg: #e0e0e0;
+  --file-active-text: #000;
+  --icon-color: #555;
+}
+
+body.dark {
+  --bg-color: #242424; /* Darker background */
+  --text-color: #e0e0e0; /* Lighter text */
+  --border-color: #5555557e; /* Darker border */
+  --container-bg: #333; /* Dark container background */
+  --sidebar-bg: #2a2a2a; /* Slightly different dark for sidebar */
+  --header-color: #e0e0e0;
+  --button-bg: #0d6efd; /* Keep blue, maybe slightly adjusted */
+  --button-text: #fff;
+  --button-hover-bg: #0b5ed7;
+  --input-bg: #444;
+  --input-border: #666;
+  --input-text: #e0e0e0;
+  --error-color: #f8d7da; /* Lighter error text for dark bg */
+  --loading-color: #aaa;
+  --link-color: #6ca KKea; /* Lighter blue */
+  --file-hover-bg: #444;
+  --file-active-bg: #555;
+  --file-active-text: #fff;
+  --icon-color: #bbb;
+}
+
+/* Apply variables */
+body {
+  font-family: "Fira Code", "Consolas", "Courier New", monospace;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+  overflow-y: hidden; /* Prevent body scroll */
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 15px;
+  gap: 15px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  border-bottom: 0px solid var(--border-color);
+}
+
+.app-header h1 {
+   margin: 0;
+   color: var(--header-color);
+}
+
+.theme-toggle-button {
+    padding: 7px 10px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius:5px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+.theme-toggle-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+
+.main-layout {
+  display: flex;
+  flex: 1;
+  min-height: 82vh;
+  max-height: 82vh;
+  gap: 15px;
+}
+
+.editor-section {
+  flex: 3;
+  display: flex; /* File Explorer | editor-view-container */
+  min-width: 0;
+  border: 0px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--container-bg);
+  height: 100%;
+}
+
+
+.editor-preview-container { /* Renamed, now holds only Sandpack */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+
+
+
+.gemini-container{
+  background-color: var(--sidebar-bg); /* Use sidebar bg */
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--text-color); /* Ensure text color inherits */
+}
+.gemini-container h3 {
+    color: var(--header-color); /* Use header color for consistency */
+}
+
+.terminal-wrapper {
+  flex-grow: 1;
+  /* Background set by xterm theme */
+  padding: 5px;
+  border-radius: 3px;
+  overflow: auto;
+}
+
+/* Sandpack - theme is handled by prop */
+.sp-layout {
+  border: none !important;
+  height: 100%;
+}
+
+/* Gemini Section Styles */
+.gemini-container label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 0.9em;
+  color: var(--text-color);
+}
+
+.gemini-container input[type="password"],
+.gemini-container textarea {
+  outline: none;
+  width: calc(100% - 12px);
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 3px;
+  font-size: 0.9em;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+.gemini-container textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.gemini-container button {
+  padding: 8px 15px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.gemini-container button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.gemini-container button:disabled {
+  background-color: #ccc; /* Keep disabled grey */
+  cursor: not-allowed;
+  color: #666;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.loading-message {
+    font-style: italic;
+    color: var(--loading-color);
+    margin-top: 10px;
+}
+
+/* Xterm Styles */
+.xterm .xterm-viewport {
+  width: 100% !important;
+  background-color: transparent !important; /* Let wrapper control background */
+}
+
+/* File Explorer Styles */
+.file-explorer {
+  width: 250px; /* Slightly wider maybe */
+  border-right: 1px solid var(--border-color);
+  padding: 0; /* Remove padding, handle inside */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--container-bg);
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.file-explorer h4 {
+    margin: 0;
+    padding: 10px 15px; /* Add padding back here */
+    font-size: 0.85em;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.file-tree-root, .file-tree-subtree {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto; /* Scroll if tree is long */
+  flex-grow: 1; /* Take remaining space */
+  padding: 5px 0; /* Padding top/bottom */
+}
+
+.file-tree-node {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px; /* Adjust padding */
+  cursor: pointer;
+  font-size: 0.9em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-color);
+  transition: background-color 0.15s ease-out;
+  user-select: none; /* Prevent text selection on click */
+}
+
+.file-tree-node:hover {
+  background-color: var(--file-hover-bg);
+}
+
+/* Active file highlight */
+.file-tree-node.active:not(.folder) { /* Only highlight active *files* */
+  background-color: var(--file-active-bg);
+  color: var(--file-active-text);
+  font-weight: 600;
+}
+/* Ensure active hover looks right */
+.file-tree-node.active:not(.folder):hover {
+    background-color: var(--file-active-bg); /* Keep active color */
+}
+
+
+.node-icon {
+    margin-right: 6px;
+    display: inline-flex; /* Align icon properly */
+    align-items: center;
+    color: var(--icon-color); /* Use theme variable for icons */
+    flex-shrink: 0; /* Prevent icon shrinking */
+}
+.file-tree-node.active:not(.folder) .node-icon {
+    color: var(--file-active-text); /* Match active text color */
+}
+.file-tree-node.folder .node-icon {
+   color: var(--link-color); /* Make folder icons stand out a bit */
+}
+body.dark .file-tree-node.folder .node-icon {
+   color: #8ab4f8; /* Lighter blue for dark mode folders */
+}
+
+
+.node-name {
+    flex-grow: 1; /* Allow name to take space */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ellipsis for long names */
+}
+
+.file-actions {
+    margin-left: auto; /* Push actions to the right */
+    padding-left: 5px;
+    display: none; /* Hide by default */
+}
+.file-tree-node:hover .file-actions {
+    display: inline-flex; /* Show on hover */
+}
+
+.file-actions button {
+    background: none;
+    border: none;
+    color: var(--icon-color);
+    cursor: pointer;
+    font-size: 0.8em;
+    /* padding: 2px; */
+    border-radius: 3px;
+    line-height: 1; 
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s, background-color 0.2s;
+}
+.file-actions button:hover {
+    opacity: 1;
+    color: var(--error-color);
+    background-color: rgba(220, 53, 69, 0.1); /* Subtle red background */
+}
+body.dark .file-actions button:hover {
+    color: #ff8a8a; /* Lighter red */
+    background-color: rgba(248, 215, 218, 0.1);
+}
+
+
+.add-file-section {
+    padding: 8px 10px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+.add-file-section input {
+  outline: none;
+    flex-grow: 1;
+    padding: 5px 8px;
+    font-size: 0.85em;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+}
+.add-file-section button {
+    padding: 5px; /* Square button */
+    font-size: 0.85em;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex; /* Center icon */
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+}
+.add-file-section button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+
+.editor-view-container {
+  flex: 1; /* Takes remaining space in editor-section */
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Important for flex children */
+}
+
+/* NEW: Styles for the toggle buttons */
+.view-toggle-buttons {
+  display: flex;
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--container-bg); /* Match container bg */
+  gap: 5px; /* Space between buttons */
+  flex-shrink: 0; /* Prevent buttons area from shrinking */
+}
+
+.view-toggle-button {
+  padding: 4px 12px;
+  border: 1px solid transparent; /* Placeholder for border alignment */
+  background-color: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 0.9em;
+  opacity: 0.7;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.view-toggle-button:hover {
+  background-color: var(--file-hover-bg); /* Use file hover color for consistency */
+  opacity: 1;
+}
+
+.view-toggle-button.active {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-weight: bold;
+  opacity: 1;
+  border-color: var(--button-bg);
+}
+.view-toggle-button.active:hover {
+  background-color: var(--button-hover-bg); /* Darken active button on hover */
+}
+
+
+.editor-view-container > div:has(.sp-layout) { /* Target the div containing Sandpack */
+  flex: 1; /* Make the Sandpack area fill remaining vertical space */
+  min-height: 0; /* Crucial for flex item to shrink properly */
+  overflow: hidden; /* Prevent internal Sandpack content overflow */
+}
+
+/* Ensure internal Sandpack layout fills its container */
+.sp-layout {
+border: none !important;
+height: 100%; /* Make Sandpack fill its container */
+display: flex; /* Ensure layout applies */
+flex-direction: column; /* Force column layout inside Sandpack */
+}
+
+
+/* For WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e00;
+  border-radius: 1px;
+  margin: 15% 0; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #75757564;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4c4c4c;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #757575#1e1e1e00;
+}
+.cm-scroller::-webkit-scrollbar-track {
+  margin: 15% 0; /* Adjust top & bottom margin to shorten track */
+}
+
+.cm-scroller::-webkit-scrollbar {
+  width: 6px; /* Scrollbar width */
+}
+
+.cm-scroller::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+
+
+
+.sidebar {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Ensure items stack vertically */
+  gap: 15px;
+  min-width: 300px; /* Might need more width for chat */
+  min-height: 0; 
+}
+
+.ai-chat-container {
+  flex: 1; /* Takes available vertical space */
+  min-height: 0; /* Allow shrinking */
+}
+
+
+.terminal-container {
+    transition: 1s all;
+    background-color: var(--sidebar-bg);
+    border: 0px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+.terminal-wrapper-outer {
+    height: 250px; 
+    flex-shrink: 0; 
+    display: flex; 
+
+}
+.terminal-wrapper-outer > .terminal-container {
+    height: 100%; 
+    width: 100%;
+}
+
+
+/* Ensure terminal instance fits its container */
+.terminal-wrapper {
+  transition: 1s all;
+  flex-grow: 1;
+  padding: 5px;
+  border-radius: 3px;
+  overflow: auto;
+}

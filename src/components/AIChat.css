@@ -1,0 +1,185 @@
+.ai-chat-container {
+    background-color: var(--container-bg);
+    border: 0px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0; /* Remove padding, handle internally */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: var(--text-color);
+    height: 100%;
+    flex: 1; /* Allow chat to take up sidebar space */
+    min-height: 0; /* Important for flex */
+  }
+  
+  .ai-chat-container h3 {
+      margin: 0;
+      padding: 10px 15px;
+      font-size: 1em;
+      color: var(--header-color);
+      border-bottom: 1px solid var(--border-color);
+      flex-shrink: 0;
+  }
+  
+  .api-key-section {
+      padding: 8px 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-color);
+      flex-shrink: 0;
+  }
+  .api-key-section label {
+      font-size: 0.9em;
+      font-weight: bold;
+      white-space: nowrap;
+  }
+  .api-key-section input {
+    outline: none;
+      flex-grow: 1;
+      padding: 6px 8px;
+      font-size: 0.60em;
+      border: 0.5px solid var(--input-border);
+      border-radius: 5px;
+      background-color: var(--input-bg);
+      color: var(--input-text);
+  }
+  
+  .chat-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .chat-message {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%; /* Prevent messages taking full width */
+    word-wrap: break-word; /* Break long words */
+  }
+  
+  .chat-message .message-role {
+      font-weight: bold;
+      font-size: 0.75em;
+      margin-bottom: 4px;
+      opacity: 0.8;
+  }
+  
+  .chat-message .message-content {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.90em;
+    line-height: 1.15;
+    background-color: var(--bg-color); /* Default background */
+  }
+  .chat-message .message-content p {
+      margin: 0 0 0.5em 0; /* Spacing between paragraphs */
+  }
+  .chat-message .message-content p:last-child {
+      margin-bottom: 0;
+  }
+  
+  
+  .chat-message.user {
+    align-self: flex-end; /* Align user messages right */
+  }
+  .chat-message.user .message-content {
+    background-color: var(--button-bg); /* User message background */
+    color: var(--button-text);
+  }
+  
+  .chat-message.assistant {
+    align-self: flex-start; /* Align assistant messages left */
+  }
+  /* Loading indicator style */
+  .chat-message.loading .message-content {
+      color: var(--loading-color);
+      background-color: transparent;
+      padding: 0;
+  }
+  
+  
+  .chat-input-area {
+    /* box-shadow:  0 0 5px rgb(255, 255, 255); */
+    padding: 10px 10px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 10px;
+    align-items: flex-end; /* Align button with bottom of textarea */
+    flex-shrink: 0;
+  }
+  
+  .chat-input-area textarea {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    resize: none; /* Disable manual resize */
+    font-size: 0.9em;
+    line-height: 1.4;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    max-height: 150px; /* Limit excessive growth */
+  }
+  
+  .chat-input-area button {
+    padding: 8px 15px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+    align-self: stretch; /* Make button full height of input area */
+  }
+  
+  .chat-input-area button:hover {
+    background-color: var(--button-hover-bg);
+  }
+  
+  .chat-input-area button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  #model-select{
+    max-width: 40%;
+    padding: 6px 8px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 0.60em;
+    flex-shrink: 0; /* Prevent shrinking */
+    outline: none; /* Remove outline on focus */
+  }
+  .gemini-logo {
+    color: aliceblue;
+    width: 17px;
+    height: 17px;
+    margin-left: 5px;
+    vertical-align: middle; 
+  }
+
+  .gemini-logo.rotating {
+    animation: rotate 2.25s linear infinite;
+  }
+
+  @keyframes rotate {
+    25% {
+      transform: rotate(90deg) scale(0.75);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.1);
+    }
+    75% {
+      transform: rotate(270deg) scale(0.75);
+    }
+    100%{
+      transform: rotate(360deg) scale(1);
+    }
+  }
+  
